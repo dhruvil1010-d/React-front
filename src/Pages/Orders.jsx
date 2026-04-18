@@ -107,7 +107,7 @@ const generatePDF = (order) => {
       body: items.map((item) => [
         item.phonename,
         item.quantity,
-        `₹${item.price}`,
+        `Rs. ${item.price}`,
       ]),
     });
 
@@ -115,7 +115,7 @@ const generatePDF = (order) => {
     const finalY = doc.lastAutoTable.finalY + 10;
 
     doc.setFontSize(12);
-    doc.text(`Total Amount: ₹${order.total}`, 14, finalY);
+    doc.text(`Total Amount: Rs. ${order.total}`, 14, finalY);
 
     // ================= FOOTER =================
     doc.setFontSize(10);
