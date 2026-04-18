@@ -36,13 +36,13 @@ const AdminDashboard = () => {
     setLoading(true);
     try {
       if (activeTab === "products") {
-        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/products`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products/all`);
         setProducts(await res.json());
       } else if (activeTab === "users") {
-        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`);
         setUsers(await res.json());
       } else if (activeTab === "orders") {
-        const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/orders`);
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/orders`);
         setOrders(await res.json());
       }
     } catch (err) {
@@ -65,8 +65,8 @@ const AdminDashboard = () => {
     };
 
     const url = editingProductId
-      ? `${process.env.REACT_APP_API_BASE_URL}/products/${editingProductId}`
-      : `${process.env.REACT_APP_API_BASE_URL}/products`;
+      ? `${import.meta.env.VITE_API_BASE_URL}/products/${editingProductId}`
+      : `${import.meta.env.VITE_API_BASE_URL}/products`;
 
     const method = editingProductId ? "PUT" : "POST";
 
@@ -133,7 +133,7 @@ const AdminDashboard = () => {
 
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Delete this product?")) {
-      await fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${id}`, {
         method: "DELETE"
       });
       fetchData();
@@ -142,7 +142,7 @@ const AdminDashboard = () => {
 
   const handleDeleteUser = async (id) => {
     if (window.confirm("Delete this user?")) {
-      await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
         method: "DELETE"
       });
       fetchData();
@@ -150,7 +150,7 @@ const AdminDashboard = () => {
   };
 
   const handleUpdateOrderStatus = async (id, status) => {
-    await fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/orders/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status })
