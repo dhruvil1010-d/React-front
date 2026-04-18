@@ -61,7 +61,7 @@ function Settings() {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/update-profile`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/update-profile`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(profileData),
@@ -101,7 +101,7 @@ function Settings() {
         email: user?.email,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/change-password`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/change-password`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

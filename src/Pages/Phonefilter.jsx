@@ -70,7 +70,7 @@ function Phonefilter() {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/add-to-cart`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/add-to-cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

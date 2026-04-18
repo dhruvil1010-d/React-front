@@ -22,7 +22,7 @@ function Cart() {
   const fetchCartItems = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/cart/${user.email}`
+        `${import.meta.env.VITE_API_BASE_URL}/cart/${user.email}`
       );
 
       if (!response.ok) {
@@ -47,7 +47,7 @@ function Cart() {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/cart/remove/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/cart/remove/${id}`,
         { method: "DELETE" }
       );
 

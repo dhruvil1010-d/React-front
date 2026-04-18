@@ -20,7 +20,7 @@ function ProductDetails() {
   const fetchProduct = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${id}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${id}`);
       if (response.ok) {
         const data = await response.json();
         setProduct(data);
@@ -43,7 +43,7 @@ function ProductDetails() {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/add-to-cart`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/add-to-cart`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -42,7 +42,7 @@ function Orders() {
   const fetchData = async () => {
     try {
       const cartRes = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/cart/${user.email}`
+        `${import.meta.env.VITE_API_BASE_URL}/cart/${user.email}`
       );
       const cartData = await cartRes.json();
       setCartItems(cartData);
@@ -54,7 +54,7 @@ function Orders() {
       setTotal(totalPrice);
 
       const orderRes = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/orders/user/${user.email}`
+        `${import.meta.env.VITE_API_BASE_URL}/orders/user/${user.email}`
       );
       const orderData = await orderRes.json();
       setOrders(orderData);
@@ -147,7 +147,7 @@ const generatePDF = (order) => {
     }
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/create-order`, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/create-order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const generatePDF = (order) => {
 
         handler: async function (response) {
           const verifyRes = await fetch(
-            `${process.env.REACT_APP_API_BASE_URL}/verify-payment`,
+            `${import.meta.env.VITE_API_BASE_URL}/verify-payment`,
             {
               method: "POST",
               headers: {

@@ -16,7 +16,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
