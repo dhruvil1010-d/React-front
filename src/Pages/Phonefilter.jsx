@@ -9,6 +9,16 @@ import s26ultra from "../assets/images/s26.webp";
 import realme from "../assets/images/realme12 Pro+5G.jpg";
 import pixel from "../assets/images/Google Pixel 8 Pro (128GB).jpg";
 import moto from "../assets/images/motoedge50pro.jpg";
+import iphone16 from "../assets/images/iphone16pro.webp";
+import iphone14 from "../assets/images/iPhone 14 (128GB).jpg";
+import realme11 from "../assets/images/realme11x 5G.jpg";
+import realmeNarzo from "../assets/images/realmeNarzo70Pro.jpg";
+import motoG84 from "../assets/images/MotoG84.jpeg"; 
+import motoEdge40 from "../assets/images/motorazr40ultra.jpg";
+import pixel7 from "../assets/images/Google Pixel 7 (128GB).jpg";
+import pixel8 from "../assets/images/Google Pixel 8 (128GB).jpg";
+import samsungS23 from "../assets/images/Galaxy S23 FE (8GB).jpg";
+import samsungS24 from "../assets/images/Galaxy S24 FE (8GB).jpg"; 
 
 // ✅ Static Data
 const phonesData = [
@@ -19,6 +29,21 @@ const phonesData = [
   { id: 5, name: "Realme 12 Pro+", brand: "Realme", price: 30000, ram: "8GB", storage: "128GB", image: realme },
   { id: 6, name: "Pixel 8 Pro", brand: "Google", price: 90000, ram: "12GB", storage: "256GB", image: pixel },
   { id: 7, name: "Moto Edge 50 Pro", brand: "Motorola", price: 40000, ram: "8GB", storage: "256GB", image: moto },
+  
+  { id: 8, name: "iPhone 16", brand: "Apple", price: 90000, ram: "8GB", storage: "128GB", image: iphone16 },
+  { id: 9, name: "iPhone 14", brand: "Apple", price: 70000, ram: "6GB", storage: "128GB", image: iphone14 },
+
+  { id: 10, name: "Realme 11 Pro+", brand: "Realme", price: 28000, ram: "8GB", storage: "256GB", image: realme11 },
+  { id: 11, name: "Realme Narzo 60", brand: "Realme", price: 18000, ram: "6GB", storage: "128GB", image: realmeNarzo },
+
+  { id: 12, name: "Moto G84", brand: "Motorola", price: 20000, ram: "8GB", storage: "128GB", image: motoG84 },
+  { id: 13, name: "Moto Edge 40", brand: "Motorola", price: 30000, ram: "8GB", storage: "256GB", image: motoEdge40 },
+
+  { id: 14, name: "Pixel 7", brand: "Google", price: 60000, ram: "8GB", storage: "128GB", image: pixel7 },
+  { id: 15, name: "Pixel 8", brand: "Google", price: 75000, ram: "8GB", storage: "256GB", image: pixel8 },
+
+  { id: 16, name: "Samsung Galaxy S23", brand: "Samsung", price: 70000, ram: "8GB", storage: "128GB", image: samsungS23 },
+  { id: 17, name: "Samsung Galaxy S24", brand: "Samsung", price: 75000, ram: "8GB", storage: "128GB", image: samsungS24 }
 ];
 
 function Phonefilter() {
