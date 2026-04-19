@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-
-
 function Home() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -161,9 +159,6 @@ function Home() {
         <div className="px-6 py-12">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-3xl font-bold text-gray-800">Featured Phones</h2>
-            <button className="text-blue-600 hover:text-blue-700 font-medium">
-              View All →
-            </button>
           </div>
 
           {/* Phone Grid */}

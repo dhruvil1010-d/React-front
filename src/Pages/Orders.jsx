@@ -75,7 +75,7 @@ const generatePDF = (order) => {
     const items = order?.items || [];
 
     if (items.length === 0) {
-      alert("No items found in this order ❌");
+      alert("No items found in this order ");
       return;
     }
 
@@ -129,7 +129,7 @@ const generatePDF = (order) => {
 
   } catch (error) {
     console.error("PDF ERROR:", error);
-    alert("PDF generation failed ❌");
+    alert("PDF generation failed ");
   }
 };
   // ================= PAYMENT =================
@@ -190,7 +190,7 @@ const generatePDF = (order) => {
           const data = await verifyRes.json();
 
           if (data.success) {
-            alert("Payment Successful ✅");
+            alert("Payment Successful ");
 
             const orderDetails = {
               username: formData.name,
@@ -201,16 +201,16 @@ const generatePDF = (order) => {
               items: cartItems,
             };
 
-            // ✅ Download PDF
+            //  Download PDF
             generatePDF(orderDetails);
 
-            // ✅ Clear cart
+            //  Clear cart
             setCartItems([]);
 
-            // ✅ Refresh order list
+            //  Refresh order list
             fetchData();
           } else {
-            alert("Payment Failed ❌");
+            alert("Payment Failed ");
           }
         },
 
@@ -325,7 +325,7 @@ const generatePDF = (order) => {
           ₹{order.total}
         </p>
 
-        {/* ✅ SAFE ITEMS MAP */}
+        {/*  SAFE ITEMS MAP */}
         {(order.items || []).map((item, i) => (
           <div key={i} className="flex gap-3 mb-2">
             <img src={item.image} className="w-12 h-12" />
@@ -336,7 +336,7 @@ const generatePDF = (order) => {
           </div>
         ))}
 
-        {/* ✅ BUTTON INSIDE SAME CARD */}
+        {/*  BUTTON INSIDE SAME CARD */}
         <button
           onClick={() => generatePDF(order)}
           className="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"

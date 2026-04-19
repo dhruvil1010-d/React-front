@@ -64,7 +64,7 @@ function Register() {
       const data = await response.json();
 
       if (response.ok) {
-        // ✅ Success Toast
+        //  Success Toast
         toast.success("Registration Successful 🎉", {
           duration: 3000,
         });
@@ -92,7 +92,7 @@ function Register() {
         backgroundPosition: "center",
       }}
     >
-      {/* ✅ Toast */}
+      {/*  Toast */}
       <Toaster
         position="top-right"
         toastOptions={{

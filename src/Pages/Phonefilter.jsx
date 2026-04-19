@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// ✅ Images
+//  Images
 import i15pro from "../assets/images/i15pro.jpg";
 import i17pro from "../assets/images/i17pro.jpeg";
 import s24 from "../assets/images/Galaxy S24 FE (8GB).jpg";
@@ -20,7 +20,7 @@ import pixel8 from "../assets/images/Google Pixel 8 (128GB).jpg";
 import samsungS23 from "../assets/images/Galaxy S23 FE (8GB).jpg";
 import samsungS24 from "../assets/images/Galaxy S24 FE (8GB).jpg"; 
 
-// ✅ Static Data
+//  Static Data
 const phonesData = [
   { id: 1, name: "iPhone 15 Pro", brand: "Apple", price: 80000, ram: "8GB", storage: "128GB", image: i15pro },
   { id: 2, name: "iPhone 17 Pro", brand: "Apple", price: 120000, ram: "12GB", storage: "256GB", image: i17pro },
@@ -57,11 +57,11 @@ function Phonefilter() {
   const [storage, setStorage] = useState("");
   const [sort, setSort] = useState("");
 
-  // ✅ Get user
+
   const userData = localStorage.getItem("user");
   const user = userData && userData !== "undefined" ? JSON.parse(userData) : null;
 
-  // 💰 Price Filter
+  
   const checkPrice = (price, range) => {
     if (range === "10-20") return price >= 10000 && price <= 20000;
     if (range === "20-50") return price >= 20000 && price <= 50000;
@@ -71,7 +71,7 @@ function Phonefilter() {
     return true;
   };
 
-  // 🔍 Filter Logic
+
   let filtered = products.filter((item) => {
     return (
       item.name.toLowerCase().includes(search.toLowerCase()) &&
@@ -82,11 +82,11 @@ function Phonefilter() {
     );
   });
 
-  // 🔃 Sorting
+
   if (sort === "low") filtered.sort((a, b) => a.price - b.price);
   if (sort === "high") filtered.sort((a, b) => b.price - a.price);
 
-  // 🛒 Add to Cart
+ 
   const handleAddToCart = async (item) => {
     if (!user) {
       alert("Please login first");
@@ -114,7 +114,7 @@ function Phonefilter() {
       });
 
       if (response.ok) {
-        alert("✅ Added to cart!");
+        alert(" Added to cart!");
         navigate("/cart");
       } else {
         alert("Failed to add to cart");

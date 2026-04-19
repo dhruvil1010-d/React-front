@@ -31,14 +31,13 @@ function Login() {
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
 
-        // ✅ Success Toast
         toast.success("Login Successful! 🎉");
 
         setTimeout(() => {
           navigate("/home");
         }, 3000);
       } else {
-        // ❌ Error Toast
+      
         toast.error(data.message || "Login failed");
       }
     } catch (err) {
