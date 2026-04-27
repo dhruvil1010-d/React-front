@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Login from "./Pages/login";
 import Register from "./Pages/Register";
 import Home from "./Pages/Home";
@@ -34,11 +35,11 @@ function AuthRoute({ children }) {
   return children;
 }
 
-function App() {
+function AnimatedRoutes() {
+  const location = useLocation();
   return (
-    <BrowserRouter>
-      <Routes>
-
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
         {/* Public Routes */}
         <Route path="/register" element={<AuthRoute><Register /></AuthRoute>} />
         <Route path="/login" element={<AuthRoute><Login /></AuthRoute>} />
@@ -57,8 +58,15 @@ function App() {
         
         {/* Default Route */}
         <Route path="/" element={<Navigate to="/login" />} />
-
       </Routes>
+    </AnimatePresence>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AnimatedRoutes />
     </BrowserRouter>
   );
 }

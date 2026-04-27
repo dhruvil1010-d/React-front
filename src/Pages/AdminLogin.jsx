@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Shield, Mail, Lock, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -40,64 +42,130 @@ function AdminLogin() {
     }
   };
 
+  // Animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="bg-gray-800 p-8 rounded-xl shadow-2xl w-96 border border-gray-700">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl mb-2">🛡️</h1>
-          <h2 className="text-2xl font-bold text-white">Admin Portal</h2>
-          <p className="text-gray-400 text-sm mt-2">Authorized Personnel Only</p>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-[#0a0a0a] relative overflow-hidden px-4">
+      
+      {/* Decorative Orbs */}
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
 
-        {error && (
-          <div className="bg-red-900/50 border border-red-500 text-red-200 px-4 py-2 rounded mb-6 text-sm">
-            {error}
-          </div>
-        )}
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-gray-400 text-sm font-medium mb-2">Email Address</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-              placeholder="admin@starphone.com"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-gray-400 text-sm font-medium mb-2">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md relative z-10"
+      >
+        <div className="bg-gray-900/80 backdrop-blur-xl p-8 sm:p-10 rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-gray-800">
+          
+          <motion.div 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="text-center mb-10"
           >
-            {loading ? "Authenticating..." : "Access Dashboard"}
-          </button>
-        </form>
+            <div className="w-20 h-20 mx-auto bg-gradient-to-tr from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(147,51,234,0.3)] rotate-3">
+              <Shield size={40} className="text-white -rotate-3" />
+            </div>
+            <h2 className="text-3xl font-black text-white tracking-tight mb-2">Admin Portal</h2>
+            <p className="text-gray-400 font-medium">Authorized Personnel Only</p>
+          </motion.div>
 
-        <div className="mt-6 text-center">
-          <button 
-            onClick={() => navigate("/login")}
-            className="text-gray-500 hover:text-gray-300 text-sm transition"
+          <AnimatePresence mode="wait">
+            {error && (
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl mb-6 text-sm font-medium flex items-center gap-3"
+              >
+                <AlertCircle size={18} /> {error}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <motion.form 
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            onSubmit={handleSubmit} 
+            className="space-y-6"
           >
-            ← Back to User Login
-          </button>
+            <motion.div variants={itemVariants}>
+              <label className="block text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 ml-1">Admin Email</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Mail size={18} className="text-gray-500 group-focus-within:text-purple-400 transition-colors" />
+                </div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full pl-11 pr-4 py-3.5 bg-gray-950/50 text-white border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all font-medium placeholder-gray-600"
+                  placeholder="admin@starphone.com"
+                  required
+                />
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <label className="block text-gray-400 text-xs font-bold uppercase tracking-wider mb-2 ml-1">Security Key</label>
+              <div className="relative group">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <Lock size={18} className="text-gray-500 group-focus-within:text-purple-400 transition-colors" />
+                </div>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full pl-11 pr-4 py-3.5 bg-gray-950/50 text-white border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all font-medium placeholder-gray-600 tracking-widest"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="pt-2">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-[0_0_30px_rgba(147,51,234,0.3)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {loading ? <Loader2 size={20} className="animate-spin" /> : "Authenticate"}
+              </motion.button>
+            </motion.div>
+          </motion.form>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 text-center"
+          >
+            <button 
+              onClick={() => navigate("/login")}
+              className="text-gray-500 hover:text-gray-300 text-sm font-medium transition flex items-center justify-center gap-2 mx-auto"
+            >
+              <ArrowLeft size={16} /> Back to Public Login
+            </button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
